@@ -11,6 +11,9 @@ dict_of_books = {}
 
 for a in range(1,10):
     response = requests.get(f"https://books.toscrape.com/catalogue/page-{a}.html")
+    if response.status_code != 200:
+        print(f"Error: {response.status_code}")
+        break
     soup = BeautifulSoup(response.text, "html.parser")
     if soup is not None:
         print(a)
